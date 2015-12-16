@@ -1,0 +1,25 @@
+== README
+
+* Ruby version = ruby 2.2.1p85
+
+* Rails version = Rails 4.2.5
+
+* System dependencies
+
+1) Ruby
+2) Rails
+3) Gem airborne to parse the JSON results from the server response.
+
+* First command to install GEMs
+
+"bundle install"
+
+* How to run the test suite
+
+1) Access the folder: boxever
+2) Run the command: "rspec test/integration/tests.rb"
+
+* Questions
+
+Send an email for "andre.sena@gmail.com".
+==

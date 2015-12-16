@@ -1,0 +1,46 @@
+#Pre_req: ################################################################################################################################################
+# 1) Required parameters in a geocoding request: (address OR components) AND Key.  
+#
+# 2) Address is formed by: country roads, State Highways, U.S. Highways, U.S. Interstates.
+#
+# 3) Address components may include: floor, establishment, point_of_interest, parking, post_box, postal_town, room, street_number and bus_station.
+#
+# 4) Component is formed by: route, locality, administrative_area, postal_code and country.
+#
+# 5) Optional parameters in a geocoding request:  bounds, language, region, components.   
+###########################################################################################################################################################
+
+require 'airborne'
+require File.expand_path("../../test_helper", __FILE__)
+
+#Base URL that will be invoqued in test cases.
+base_url='https://maps.googleapis.com/maps/api/geocode/json?'
+
+#Valid key to receive response from server.
+key_part='&key=AIzaSyBSArrqAuq-06jGoXB6e605VOXIrYu2wDg'
+
+describe 'BOXEVER API Test Cases' do    
+ 
+ describe 'Test Cases to validate OPTIONAL parameters' do #Starting OPTIONAL parameters 
+  it 'should validate response when using valid address and valid bounds' do
+    address_bounds='address=Winnetka&bounds=34.172684,-118.604794|34.236144,-118.500938'
+	get "#{base_url + address_bounds + key_part }"   
+	
+	expect_json('results.0.address_components.0', long_name: "Winnetka", short_name: "Winnetka")    
+    expect_json('results.0', formatted_address: "Winnetka, Los Angeles, CA, USA")	
+	expect_json('results.0.address_components.0', types: ["neighborhood", "political"])
+    expect_json('results.*.geometry.bounds.northeast', lat: regex(/34./))
+    expect_json('results.*.geometry.bounds.southwest', lat: regex(/34./))
+    expect_json('results.*.geometry.location', lat: regex(/34./))
+    expect_json('results.*.geometry.viewport.northeast', lat: regex(/34./))
+    expect_json('results.*.geometry.viewport.southwest', lat: regex(/34./))
+    
+	longitude
+	expect_json('results.0', types: ["neighborhood", "political"])
+	expect_json(status: "OK")
+  end
+  
+  
+  
+ end #Ending OPTIONAL parameters
+end
