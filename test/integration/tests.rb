@@ -115,9 +115,9 @@ describe 'BOXEVER API Test Cases' do
     invalid_address_county_road='address=Co Road '
 	get "#{base_url + invalid_address_county_road + key_part }"
 
-    expect_json('results.0.address_components.0', long_name: "Co Road East", short_name: "County Rd E") 
+    expect_json('results.0.address_components.0', long_name: "County Highway West", short_name: "County Hwy W") 
 	expect_json('results.0.address_components.0', types: ["route"])	
-    expect_json('results.0', formatted_address: "County Rd E, Wisconsin, USA")	
+    expect_json('results.0', formatted_address: "County Hwy W, Wisconsin, USA")	
 	expect_json('results.0.address_components.0', types: ["route"])
 	ok	
   end  
@@ -126,7 +126,7 @@ describe 'BOXEVER API Test Cases' do
     valid_address_state_highway='address=California 82'
 	get "#{base_url + valid_address_state_highway + key_part }"
 	
-	expect_json('results.0.address_components.0', long_name: "Highway 82", short_name: "CA-82") 
+	expect_json('results.0.address_components.0', long_name: "California 82", short_name: "CA-82") 
 	expect_json('results.0.address_components.0', types: ["route"])	
     expect_json('results.0', formatted_address: "CA-82, California, USA")	
 	expect_json('results.0', types: ["route"])
@@ -203,9 +203,9 @@ describe 'BOXEVER API Test Cases' do
     valid_address_us_interstate='address=Interstate '
 	get "#{base_url + valid_address_us_interstate + key_part }"
 	
-	expect_json('results.0.address_components.0', long_name: "Interstate", short_name: "Interstate") 
+	expect_json('results.0.address_components.0', long_name: "The Interstate", short_name: "The Interstate") 
 	expect_json('results.0.address_components.0', types: ["route"])	
-    expect_json('results.0', formatted_address: "Interstate, Jay, VT 05859, USA")	
+    expect_json('results.0', formatted_address: "The Interstate, Ludowici, GA 31316, USA")	
 	expect_json('results.0', types: ["route"])
 	ok
   end  
